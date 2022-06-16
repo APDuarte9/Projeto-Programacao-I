@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Personagem : MonoBehaviour
 {
     private Animator anim;
-   // public Camera cam;
+    // public Camera cam;
     private Rigidbody rigid;
     public float Jumpforce = 500;
     public float groundDistance = 0.3f;
@@ -41,27 +42,27 @@ public class Personagem : MonoBehaviour
 
         }
 
-        if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, groundDistance , whatIsGround))
+        if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, groundDistance, whatIsGround))
         {
-          
+
             anim.SetBool("Grounded", true);
             anim.applyRootMotion = true;
 
-     
+
 
         }
         else
         {
 
             anim.SetBool("Grounded", false);
-           }
+        }
 
         stepClimb();
     }
 
     void stepClimb()
     {
-        
+
         RaycastHit hitLower;
         if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(Vector3.forward), out hitLower, 0.1f))
         {
@@ -94,4 +95,15 @@ public class Personagem : MonoBehaviour
             }
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Pira"))
+        {
+            Jogo.fogo = true;
+            //Application.Quit();
+        }
+    }
+
+   
 }
