@@ -82,7 +82,7 @@ public class Jogo : MonoBehaviour
         if (coleta)
         {
             coleta = false;
-            fogoTocha.transform.localScale += new Vector3(20f, 20f, 20f);
+            fogoTocha.transform.localScale += new Vector3(3f, 3f, 3f);
         }
     } 
     void InstanciaColetavel()
